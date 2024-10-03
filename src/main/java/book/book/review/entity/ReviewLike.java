@@ -1,12 +1,12 @@
 package book.book.review.entity;
 
-import book.book.common.BaseEntity;
+import book.book.common.BaseTimeEntity;
 import book.book.member.entity.Member;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "review_comment_like")
-public class ReviewCommentLike extends BaseEntity {
+@Table(name = "review_like")
+public class ReviewLike extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

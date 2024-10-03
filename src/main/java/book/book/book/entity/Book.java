@@ -1,6 +1,6 @@
 package book.book.book.entity;
 
-import book.book.common.BaseEntity;
+import book.book.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -9,22 +9,22 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "book")
 @Getter
-public class Book extends BaseEntity {
+public class Book extends BaseTimeEntity {  //속성 추가 예정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
 
-    @Column(length = 100)
+    @Column
     private String title;
 
-    @Column(length = 30)
+    @Column
     private String author;
 
-    @Column(length = 20)
+    @Column(length = 16)
     private String isbn;
 
-    @Column(length = 10)
-    private String category;
+    @Enumerated(value = EnumType.STRING)
+    private BookCategory bookCategory;
 
     @Column(length = 100)
     private String description;

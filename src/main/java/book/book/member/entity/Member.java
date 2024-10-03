@@ -1,13 +1,13 @@
 package book.book.member.entity;
 
-import book.book.common.BaseEntity;
+import book.book.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 @Table(name = "member")
 @Getter
-public class Member extends BaseEntity {
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

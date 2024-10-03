@@ -1,16 +1,14 @@
 package book.book.book.entity;
 
-import book.book.common.BaseEntity;
+import book.book.common.BaseTimeEntity;
 import book.book.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "member_book")
 @Getter
-public class MemberBook extends BaseEntity {
+public class MemberBook extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,9 +21,10 @@ public class MemberBook extends BaseEntity {
     @JoinColumn(name = "bookId")
     private Book book;
 
-    @Column(length = 10)
-    private String status;
+    @Enumerated(value = EnumType.STRING)
+    private ReadingStatus readingStatus;
 
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    @Embedded
+    private ReadCompletionDates readCompletionDate;
+
 }

@@ -1,25 +1,33 @@
 package book.book.review.entity;
 
-import book.book.book.entity.MemberBook;
-import book.book.common.BaseEntity;
+import book.book.book.entity.Book;
+import book.book.common.BaseTimeEntity;
+import book.book.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 @Table(name = "review")
 @Getter
-public class Review extends BaseEntity {
+public class Review extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "memberBookId")
-    private MemberBook memberBook;
+    @JoinColumn(name = "memberId")
+    private Member member;
 
-    private Integer rating;
+    @ManyToOne
+    @JoinColumn(name = "bookId")
+    private Book book;
 
+    //VO
     @Embedded
     private ReviewComment reviewComment;
 
+    @Embedded
+    private Star star;
+
+    private Integer rating;
 }
