@@ -23,4 +23,8 @@ public class Member extends BaseTimeEntity {
     @Column(length = 50)
     private String email;
 
+    //카카오에서 주는 Id값
+    @Column(length = 50)
+    private String providerId;
+
 }
