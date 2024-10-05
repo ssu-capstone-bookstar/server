@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show-sql: true
+#  data:
+#    redis:
+#      host: ${REDIS_ENDPOINT}
+#      port: 6379
+#
+#jwt:
+#  secretkey: ${SECRETKEY}
+#  accessTokenExpiration: 86400000
+#  refreshTokenExpiration: 604800000
+#
+#
+cloud:
+  aws:
+    s3:
+      bucket: test
+    credentials:
+      access-key: test
+      secret-key: test
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
