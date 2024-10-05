@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     protected ResponseEntity<ResponseForm<Void>> handleCustomClientErrorException(CustomException e, HttpServletRequest request) {
         log.warn("[클라이언트 에러] from {} api", request.getRequestURI(), e);
-        return ResponseEntity.status(e.getHttpStatus()).body(
+        return ResponseEntity.status(e.getResultCode().getHttpstatus()).body(
                 new ResponseForm<>(e.getResultCode())
         );
     }

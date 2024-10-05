@@ -22,7 +22,7 @@ public class ResponseForm<T> {
 
 
     /**
-        요청 실패에 따른 생성자 처리
+        요청 실패 시, 정의한 에러를 파라미터로 받음
      */
     public ResponseForm(ResultCode resultCode) {
         this();

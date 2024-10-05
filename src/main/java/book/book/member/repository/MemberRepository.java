@@ -4,7 +4,6 @@ import book.book.common.CustomException;
 import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.HttpStatus;
 
 import java.util.Optional;
 
@@ -20,11 +19,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     default Member findByEmailOrElseThrow(String email) {
         return findByEmail(email)
-                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, ResultCode.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ResultCode.MEMBER_NOT_FOUND));
     }
 
-    default Member getByproviderIdOrElseThrow(String providerId) {
+    default Member findByproviderIdOrElseThrow(String providerId) {
         return findByProviderId(providerId)
-                .orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, ResultCode.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ResultCode.MEMBER_NOT_FOUND));
     }
 }
