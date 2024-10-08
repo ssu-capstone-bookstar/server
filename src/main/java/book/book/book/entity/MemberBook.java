@@ -24,7 +24,7 @@ public class MemberBook extends BaseTimeEntity {
     private Book book;
 
     @Embedded
-    private ReviewComment reviewComment;
+    private BookComment bookComment;
 
     @Embedded
     private Star star; // 이것만이 Readed로 바꿀 수 있음
@@ -52,5 +52,9 @@ public class MemberBook extends BaseTimeEntity {
         if (rating == null || rating <= 0) {
             throw new CustomException(ResultCode.READING_STATUS_RATING_REQUIRED);
         }
+    }
+
+    public void updateBookComment(String comment) {
+        this.bookComment = new BookComment(comment);
     }
 }

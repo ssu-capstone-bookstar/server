@@ -1,12 +1,11 @@
 package book.book.book.service;
 
 import book.book.book.dto.SaveReadingStatusRequest;
+import book.book.book.dto.savedBookCommentRequest;
 import book.book.book.entity.Book;
 import book.book.book.entity.MemberBook;
 import book.book.book.repository.BookRepository;
 import book.book.book.repository.MemberBookRepository;
-import book.book.common.CustomException;
-import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +37,18 @@ public class MemberBookService {
         Book book = bookRepository.findByIdOrElseThrow(bookId);
 
         memberBookRepository.deleteByMemberAndBook(member, book);
+    }
+
+    @Transactional
+    public void saveBookComment(Long memberId, Long bookId, savedBookCommentRequest rq) {
+        Member member = memberRepository.findByIdOrElseThrow(memberId);
+        Book book = bookRepository.findByIdOrElseThrow(bookId);
+
+        MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
+                .orElse(new MemberBook());
+
+        memberBook.updateBookComment(rq.getComment());
+
+        memberBookRepository.save(memberBook);
     }
 }
