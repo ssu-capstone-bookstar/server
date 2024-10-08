@@ -19,4 +19,6 @@ public interface MemberBookRepository extends JpaRepository<MemberBook, Long> {
     }
 
     Optional<MemberBook> findByMemberAndBook(Member member, Book book);
+
+    void deleteByMemberAndBook(Member member, Book book);
 }
