@@ -4,11 +4,12 @@ import book.book.book.entity.Book;
 import book.book.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "book_collection_book")
 @Getter
-public class BookCollectionBook extends BaseTimeEntity {
+@NoArgsConstructor
+public class CollectionBook extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +17,15 @@ public class BookCollectionBook extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id", nullable = false)
-    private BookCollection bookCollection;
+    private Collection collection;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
+    public CollectionBook(Collection collection, Book book) {
+        this.collection = collection;
+        this.book = book;
+    }
 }
 

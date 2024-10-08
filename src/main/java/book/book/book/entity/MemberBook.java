@@ -35,6 +35,7 @@ public class MemberBook extends BaseTimeEntity {
     @Embedded
     private ReadCompletionDates readCompletionDate;
 
+
     public void updateReadingStatus(ReadingStatus status, Float star) {
 
         if (status == ReadingStatus.READED) {

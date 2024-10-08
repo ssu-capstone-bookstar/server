@@ -1,6 +1,6 @@
 package book.book.collection.entity;
 
-import book.book.collection.dto.UpdateBookCollectionRequest;
+import book.book.collection.dto.UpdateCollectionRequest;
 import book.book.common.BaseTimeEntity;
 import book.book.common.CustomException;
 import book.book.common.ResultCode;
@@ -10,10 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "book_collection")
 @Getter
 @NoArgsConstructor
-public class BookCollection extends BaseTimeEntity {
+public class Collection extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +24,7 @@ public class BookCollection extends BaseTimeEntity {
     private String name;
     private String description;
 
-    public BookCollection(Member member, String name, String description) {
+    public Collection(Member member, String name, String description) {
         this.member = member;
         this.name = name;
         this.description = description;
@@ -36,7 +35,7 @@ public class BookCollection extends BaseTimeEntity {
             throw new CustomException(ResultCode.IS_NOT_OWNER);
     }
 
-    public void update(UpdateBookCollectionRequest request) {
+    public void update(UpdateCollectionRequest request) {
         if(request.getName() != null)
             this.name = request.getName();
         if(request.getDescription() != null)

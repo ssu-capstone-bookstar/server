@@ -11,8 +11,10 @@ import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @RequiredArgsConstructor
 public class MemberBookService {
 
