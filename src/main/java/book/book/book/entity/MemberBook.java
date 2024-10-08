@@ -10,7 +10,7 @@ import lombok.Getter;
 @Entity
 @Table(name = "member_book")
 @Getter
-public class Rating extends BaseTimeEntity {
+public class MemberBook extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

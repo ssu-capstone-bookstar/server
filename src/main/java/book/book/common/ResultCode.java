@@ -34,7 +34,7 @@ public enum ResultCode {
     READING_STATUS_RATING_REQUIRED("B501", "READED상태는 평점이 필수입니다.", HttpStatus.BAD_REQUEST),
 
     // B6xx: 평가 예외
-    RATING_FOUND("B600", "존재하지 않는 평가입니다.", HttpStatus.NOT_FOUND)
+    MEMBERBOOK_NOT_FOUND("B600", "존재하지 않는 유저책입니다.", HttpStatus.NOT_FOUND)
     ;
     private final String code;
     private final String message;

@@ -15,7 +15,7 @@ public class ReviewCommentLike extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "ratingId")
-    private Rating rating;
+    private MemberBook memberBook;
 
     @ManyToOne
     @JoinColumn(name = "memberId")
