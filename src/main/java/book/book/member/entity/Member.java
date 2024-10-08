@@ -27,4 +27,7 @@ public class Member extends BaseTimeEntity {
     @Column(length = 50)
     private String providerId;
 
+    public Boolean isSameById(Long id) {
+        return this.id == id ? true : false;
+    }
 }

@@ -1,7 +1,7 @@
 package book.book.book.service;
 
 import book.book.book.dto.SaveReadingStatusRequest;
-import book.book.book.dto.savedBookCommentRequest;
+import book.book.book.dto.SavedBookCommentRequest;
 import book.book.book.entity.Book;
 import book.book.book.entity.MemberBook;
 import book.book.book.repository.BookRepository;
@@ -28,7 +28,7 @@ public class MemberBookService {
         MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
                 .orElse(new MemberBook());
 
-        memberBook.updateReadingStatus(rq.getReadingStatus(), rq.getRating());
+        memberBook.updateReadingStatus(rq.getReadingStatus(), rq.getStar());
 
         memberBookRepository.save(memberBook);
     }
@@ -42,7 +42,7 @@ public class MemberBookService {
     }
 
     @Transactional
-    public void saveBookComment(Long memberId, Long bookId, savedBookCommentRequest rq) {
+    public void saveBookComment(Long memberId, Long bookId, SavedBookCommentRequest rq) {
         Member member = memberRepository.findByIdOrElseThrow(memberId);
         Book book = bookRepository.findByIdOrElseThrow(bookId);
 

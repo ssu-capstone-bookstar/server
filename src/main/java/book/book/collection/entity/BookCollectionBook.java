@@ -6,9 +6,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
-@Table(name = "collection_book")
+@Table(name = "book_collection_book")
 @Getter
-public class CollectionBook extends BaseTimeEntity {
+public class BookCollectionBook extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class CollectionBook extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id", nullable = false)
-    private Collection collection;
+    private BookCollection bookCollection;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)

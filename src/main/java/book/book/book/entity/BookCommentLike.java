@@ -1,6 +1,5 @@
 package book.book.book.entity;
 
-import book.book.collection.entity.Collection;
 import book.book.common.BaseTimeEntity;
 import book.book.member.entity.Member;
 import jakarta.persistence.*;

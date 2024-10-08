@@ -28,6 +28,7 @@ public enum ResultCode {
 
     // B4xx: 유저 예외
     MEMBER_NOT_FOUND("B400", "존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND),
+    IS_NOT_OWNER("B401", "권한이 없습니다.(주인이 아닙니다)", HttpStatus.BAD_REQUEST),
 
     // B5xx: book 예외
     BOOK_NOT_FOUND("B500", "존재하지 않는 책입니다.", HttpStatus.NOT_FOUND),
@@ -36,9 +37,11 @@ public enum ResultCode {
     // B6xx: 평가 예외
     MEMBERBOOK_NOT_FOUND("B600", "존재하지 않는 유저책입니다.", HttpStatus.NOT_FOUND),
 
-    // B7xx: Collection 예외
-    COLLECTION_NOT_FOUND("B700", "존재하지 않는 북콜렉션입니다.", HttpStatus.NOT_FOUND)
+    // B7xx: BookCollection 예외
+    COLLECTION_NOT_FOUND("B700", "존재하지 않는 북콜렉션입니다.", HttpStatus.NOT_FOUND),
+    BOOKCOLLECTION_ALREADY("B701", "나의 북콜렉션 중 같은 이름의 북콜렉션이 존재합니다.", HttpStatus.BAD_REQUEST)
     ;
+
     private final String code;
     private final String message;
     private final HttpStatus httpstatus;

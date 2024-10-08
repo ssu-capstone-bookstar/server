@@ -16,6 +16,6 @@ public class SaveReadingStatusRequest {
 
     @Min(0)
     @Max(5)
-    private Float rating;
+    private Float star;
 
 }
