@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CollectionLike extends BaseTimeEntity {
+public class BookCollectionLike extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class CollectionLike extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "collection_id", nullable = false)
-    private Collection collection;
+    private BookCollection bookCollection;
 
-    public CollectionLike(Member member, Collection collection) {
+    public BookCollectionLike(Member member, BookCollection bookCollection) {
         this.member = member;
-        this.collection = collection;
+        this.bookCollection = bookCollection;
     }
 }

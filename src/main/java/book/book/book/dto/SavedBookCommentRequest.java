@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class savedBookCommentRequest {
+public class SavedBookCommentRequest {
 
     @Size(max = 1024)
     private String comment;

@@ -36,8 +36,9 @@ public enum ResultCode {
     // B6xx: 평가 예외
     MEMBERBOOK_NOT_FOUND("B600", "존재하지 않는 유저책입니다.", HttpStatus.NOT_FOUND),
 
-    // B7xx: Collection 예외
-    COLLECTION_NOT_FOUND("B700", "존재하지 않는 북콜렉션입니다.", HttpStatus.NOT_FOUND)
+    // B7xx: BookCollection 예외
+    COLLECTION_NOT_FOUND("B700", "존재하지 않는 북콜렉션입니다.", HttpStatus.NOT_FOUND),
+    BOOKCOLLECTION_ALREADY("B701", "나의 북콜렉션 중 같은 이름의 북콜렉션이 존재합니다.", HttpStatus.BAD_REQUEST)
     ;
     private final String code;
     private final String message;

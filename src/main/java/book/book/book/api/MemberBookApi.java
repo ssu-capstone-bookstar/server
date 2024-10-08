@@ -1,7 +1,7 @@
 package book.book.book.api;
 
 import book.book.book.dto.SaveReadingStatusRequest;
-import book.book.book.dto.savedBookCommentRequest;
+import book.book.book.dto.SavedBookCommentRequest;
 import book.book.book.service.MemberBookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class MemberBookApi {
     @PostMapping("/book-comment")
     public void saveBookComment(@AuthenticationPrincipal Long memberId,
                                 @PathVariable Long book_id,
-                                @RequestBody @Valid savedBookCommentRequest request) {
+                                @RequestBody @Valid SavedBookCommentRequest request) {
         memberBookService.saveBookComment(memberId, book_id, request);
     }
 
