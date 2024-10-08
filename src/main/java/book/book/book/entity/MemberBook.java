@@ -54,7 +54,14 @@ public class MemberBook extends BaseTimeEntity {
         }
     }
 
+    public void deleteBookComment() {
+        String BLANK_STRING = "";
+        updateBookComment(BLANK_STRING);
+    }
+
     public void updateBookComment(String comment) {
         this.bookComment = new BookComment(comment);
     }
+
+
 }

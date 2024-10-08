@@ -28,9 +28,16 @@ public class MemberBookApi {
     }
 
     @PostMapping("/book-comment")
-    public void saveComment(@AuthenticationPrincipal Long memberId,
-                                  @PathVariable Long bookId,
-                                  @RequestBody @Valid savedBookCommentRequest request) {
+    public void saveBookComment(@AuthenticationPrincipal Long memberId,
+                                @PathVariable Long bookId,
+                                @RequestBody @Valid savedBookCommentRequest request) {
         memberBookService.saveBookComment(memberId, bookId, request);
+    }
+
+
+    @DeleteMapping("/book-comment")
+    public void deleteBookComment(@AuthenticationPrincipal Long memberId,
+                                  @PathVariable Long bookId) {
+        memberBookService.deleteBookComment(memberId, bookId);
     }
 }

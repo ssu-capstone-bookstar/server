@@ -6,6 +6,8 @@ import book.book.book.entity.Book;
 import book.book.book.entity.MemberBook;
 import book.book.book.repository.BookRepository;
 import book.book.book.repository.MemberBookRepository;
+import book.book.common.CustomException;
+import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +52,16 @@ public class MemberBookService {
         memberBook.updateBookComment(rq.getComment());
 
         memberBookRepository.save(memberBook);
+    }
+
+    @Transactional
+    public void deleteBookComment(Long memberId, Long bookId) {
+        Member member = memberRepository.findByIdOrElseThrow(memberId);
+        Book book = bookRepository.findByIdOrElseThrow(bookId);
+
+        MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
+                .orElseThrow(() -> new CustomException(ResultCode.MEMBERBOOK_NOT_FOUND));
+
+        memberBook.deleteBookComment();
     }
 }
