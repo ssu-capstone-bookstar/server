@@ -28,7 +28,7 @@ public class MemberBookService {
         MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
                 .orElse(new MemberBook());
 
-        memberBook.updateReadingStatus(rq.getReadingStatus(), rq.getRating());
+        memberBook.updateReadingStatus(rq.getReadingStatus(), rq.getStar());
 
         memberBookRepository.save(memberBook);
     }

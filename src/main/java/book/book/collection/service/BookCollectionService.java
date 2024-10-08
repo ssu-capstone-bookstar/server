@@ -31,4 +31,13 @@ public class BookCollectionService {
         BookCollection bookCollection = new BookCollection(member, rq.getName(), rq.getDescription());
         bookCollectionRepository.save(bookCollection);
     }
+
+    @Transactional
+    public void deleteBookCollection(Long memberId, Long bookcollectionId) {
+        BookCollection bookCollection = bookCollectionRepository.findByIdOrElseThrow(bookcollectionId);
+
+        bookCollection.validateOwner(memberId);
+
+        bookCollectionRepository.delete(bookCollection);
+    }
 }

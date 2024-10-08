@@ -1,6 +1,8 @@
 package book.book.collection.entity;
 
 import book.book.common.BaseTimeEntity;
+import book.book.common.CustomException;
+import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,5 +28,10 @@ public class BookCollection extends BaseTimeEntity {
         this.member = member;
         this.name = name;
         this.description = description;
+    }
+
+    public void validateOwner(Long memberId) {
+        if(!this.member.isSameById(memberId))
+            throw new CustomException(ResultCode.IS_NOT_OWNER);
     }
 }

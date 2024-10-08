@@ -19,6 +19,12 @@ public class BookCollectionApi {
         bookCollectionService.saveBookCollection(memberId, request);
     }
 
+    @DeleteMapping("/{bookcollection_id}")
+    public void deleteBookCollection(@AuthenticationPrincipal Long memberId,
+                                     @PathVariable Long bookcollection_id) {
+        bookCollectionService.deleteBookCollection(memberId, bookcollection_id);
+    }
+
     @PostMapping("/{bookcollection_id}/like")
     public void saveBookCollectionLike(@AuthenticationPrincipal Long memberId,
                                    @PathVariable Long bookcollection_id) {
