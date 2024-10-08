@@ -6,10 +6,12 @@ import book.book.collection.dto.UpdateBookCollectionRequest;
 import book.book.collection.service.BookCollectionLikeService;
 import book.book.collection.service.BookCollectionService;
 import book.book.common.ResponseForm;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
 @RequestMapping("api/v1/bookcollections")
 @RequiredArgsConstructor
 public class BookCollectionApi {
@@ -22,14 +24,14 @@ public class BookCollectionApi {
 
     @PostMapping("/bookcollection")
     public void saveBookCollection(@AuthenticationPrincipal Long memberId,
-                                   @RequestBody SaveBookCollectionRequest request) {
+                                   @RequestBody @Valid SaveBookCollectionRequest request) {
         bookCollectionService.saveBookCollection(memberId, request);
     }
 
     @PostMapping("/{bookcollection_id}")
     public ResponseForm<BookCollectionResponse> updateBookCollection(@AuthenticationPrincipal Long memberId,
                                                                      @PathVariable Long bookcollection_id,
-                                                                     @RequestBody UpdateBookCollectionRequest request) {
+                                                                     @RequestBody @Valid UpdateBookCollectionRequest request) {
         return new ResponseForm<>(bookCollectionService.updateBookCollection(memberId, bookcollection_id, request));
     }
 
@@ -54,5 +56,10 @@ public class BookCollectionApi {
     public void deleteBookCollectionLike(@AuthenticationPrincipal Long memberId,
                                          @PathVariable Long bookcollection_id) {
         bookCollectionLikeService.deleteBookCollectionLike(memberId, bookcollection_id);
+    }
+
+    @PostMapping("/like/bookcollection")
+    public void getLikedBookCollection(@AuthenticationPrincipal Long memberId) {
+        bookCollectionLikeService.getLikedBookCollection(memberId);
     }
 }
