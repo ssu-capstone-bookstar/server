@@ -15,4 +15,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         return findById(id)
                 .orElseThrow(() -> new CustomException(ResultCode.BOOK_NOT_FOUND));
     }
+
+    Optional<Book> findByIsbn(String isbn);
+
+    default Book findByIsbnOrElseThrow(String isbn) {
+        return findByIsbn(isbn)
+                .orElseThrow(() -> new CustomException(ResultCode.BOOK_NOT_FOUND));
+    }
 }
