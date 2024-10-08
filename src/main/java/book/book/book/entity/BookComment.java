@@ -1,12 +1,16 @@
-package book.book.review.entity;
+package book.book.book.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Embeddable
 @Getter
-public class ReviewComment {
+@AllArgsConstructor
+@NoArgsConstructor
+public class BookComment {
 
 
     @Column(length = 255)

@@ -27,8 +27,15 @@ public enum ResultCode {
     REFRESHTOKEN_OUTDATED("B302", "새로 발급된 토큰보다 이전의 리프레시 토큰입니다.", HttpStatus.BAD_REQUEST),
 
     // B4xx: 유저 예외
-    MEMBER_NOT_FOUND("B400", "존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND);
+    MEMBER_NOT_FOUND("B400", "존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND),
 
+    // B5xx: book 예외
+    BOOK_NOT_FOUND("B500", "존재하지 않는 책입니다.", HttpStatus.NOT_FOUND),
+    READING_STATUS_RATING_REQUIRED("B501", "READED상태는 평점이 필수입니다.", HttpStatus.BAD_REQUEST),
+
+    // B6xx: 평가 예외
+    MEMBERBOOK_NOT_FOUND("B600", "존재하지 않는 유저책입니다.", HttpStatus.NOT_FOUND)
+    ;
     private final String code;
     private final String message;
     private final HttpStatus httpstatus;
