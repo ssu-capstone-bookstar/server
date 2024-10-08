@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
-@Table(name = "collection_book")
+@Table(name = "book_collection_book")
 @Getter
 public class BookCollectionBook extends BaseTimeEntity {
 

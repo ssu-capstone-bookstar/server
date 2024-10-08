@@ -1,9 +1,12 @@
 package book.book.collection.service;
 
+import book.book.collection.dto.BookCollectionResponse;
 import book.book.collection.dto.SaveBookCollectionRequest;
+import book.book.collection.dto.UpdateBookCollectionRequest;
 import book.book.collection.entity.BookCollection;
 import book.book.collection.repository.BookCollectionRepository;
 import book.book.common.CustomException;
+import book.book.common.ResponseForm;
 import book.book.common.ResultCode;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
@@ -23,13 +26,21 @@ public class BookCollectionService {
     public void saveBookCollection(Long memberId, SaveBookCollectionRequest rq) {
         Member member = memberRepository.findByIdOrElseThrow(memberId);
 
-        // 같은 이름의 컬렉션이 이미 존재하는지 확인
-        if (bookCollectionRepository.existsByMemberAndName(member, rq.getName())) {
-            throw new CustomException(ResultCode.BOOKCOLLECTION_ALREADY);
-        }
+        validateSameNameBookCollection(member, rq.getName());
 
         BookCollection bookCollection = new BookCollection(member, rq.getName(), rq.getDescription());
         bookCollectionRepository.save(bookCollection);
+    }
+
+    @Transactional
+    public BookCollectionResponse updateBookCollection(Long memberId, Long bookcollectionId, UpdateBookCollectionRequest rq) {
+        Member member = memberRepository.findByIdOrElseThrow(memberId);
+        BookCollection bookCollection = bookCollectionRepository.findByIdOrElseThrow(bookcollectionId);
+
+        validateSameNameBookCollection(member, rq.getName());
+        bookCollection.validateOwner(memberId);
+        bookCollection.update(rq);
+        return BookCollectionResponse.from(bookCollection);
     }
 
     @Transactional
@@ -39,5 +50,11 @@ public class BookCollectionService {
         bookCollection.validateOwner(memberId);
 
         bookCollectionRepository.delete(bookCollection);
+    }
+
+    private void validateSameNameBookCollection(Member member, String name) {
+        if (bookCollectionRepository.existsByMemberAndName(member, name)) {
+            throw new CustomException(ResultCode.BOOKCOLLECTION_ALREADY);
+        }
     }
 }

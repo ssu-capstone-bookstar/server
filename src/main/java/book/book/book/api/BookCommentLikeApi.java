@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("api/v1/memberbook")
 @RequiredArgsConstructor
-public class BookCommentApi {
+public class BookCommentLikeApi {
 
     private final BookCommentLikeService bookCommentLikeService;
 
