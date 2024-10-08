@@ -1,4 +1,4 @@
-package book.book.review.entity;
+package book.book.book.entity;
 
 import book.book.common.BaseTimeEntity;
 import book.book.member.entity.Member;
@@ -6,16 +6,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
-@Table(name = "review_like")
+@Table(name = "review_commnet_like")
 @Getter
-public class ReviewLike extends BaseTimeEntity {
+public class ReviewCommentLike extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "reviewId")
-    private Review review;
+    @JoinColumn(name = "ratingId")
+    private Rating rating;
 
     @ManyToOne
     @JoinColumn(name = "memberId")
