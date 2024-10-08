@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
-public class CollectionService {
+public class CollectionLikeService {
     private final CollectionLikeRepository collectionLikeRepository;
     private final MemberRepository memberRepository;
     private final CollectionRepository collectionRepository;
