@@ -43,6 +43,11 @@ public class CollectionApi {
         collectionService.deleteCollection(memberId, collection_id);
     }
 
+    @GetMapping("/me")
+    public ResponseForm<CollectionResponses> getMyCollections(@AuthenticationPrincipal Long memberId) {
+        return new ResponseForm<>(collectionService.getMyCollections(memberId));
+    }
+
 
     /**
      * Collection Like 관련
