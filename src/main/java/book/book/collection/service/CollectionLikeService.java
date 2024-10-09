@@ -3,8 +3,8 @@ package book.book.collection.service;
 import book.book.collection.dto.CollectionResponses;
 import book.book.collection.entity.Collection;
 import book.book.collection.entity.CollectionLike;
-import book.book.collection.repository.CollectionLikeRepository;
-import book.book.collection.repository.CollectionRepository;
+import book.book.collection.repository.collectionlike.CollectionLikeRepository;
+import book.book.collection.repository.collection.CollectionRepository;
 import book.book.image.ImageService;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
@@ -30,8 +30,7 @@ public class CollectionLikeService {
         Collection collection = collectionRepository.findByIdOrElseThrow(collectionId);
 
         collectionLikeRepository.findByMemberAndCollection(member, collection)
-                .orElse(collectionLikeRepository.save(
-                        new CollectionLike(member, collection)));
+                .orElseGet(() -> collectionLikeRepository.save(new CollectionLike(member, collection)));
     }
 
     @Transactional
@@ -53,16 +52,16 @@ public class CollectionLikeService {
      * => 관리하기 힘듦 것 같음 NO
      */
     @Transactional(readOnly = true)
-    public CollectionResponses getLikedCollection(Long memberId) {
-        List<Collection> collections = collectionRepository.findLikedBookCollection(memberId);
+    public CollectionResponses getLikedCollections(Long memberId) {
+        List<Collection> collections = collectionLikeRepository.findLikedCollections(memberId);
 
-        List<Long> bookCollectionIds = getBookCollectionIds(collections);
-        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByBookCollectionId(bookCollectionIds);
+        List<Long> collectionIds = getcollectionIds(collections);
+        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByCollectionId(collectionIds);
 
         return CollectionResponses.of(collections, imagesMap);
     }
 
-    private List<Long> getBookCollectionIds(List<Collection> collections) {
+    private List<Long> getcollectionIds(List<Collection> collections) {
         return collections.stream()
                 .map(Collection::getId)
                 .collect(Collectors.toList());

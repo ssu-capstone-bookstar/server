@@ -1,4 +1,4 @@
-package book.book.collection.repository;
+package book.book.collection.repository.collection;
 
 import book.book.collection.entity.Collection;
 import book.book.common.CustomException;

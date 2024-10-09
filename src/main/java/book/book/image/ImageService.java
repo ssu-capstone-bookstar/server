@@ -15,8 +15,8 @@ public class ImageService {
 
 
     @Transactional(readOnly = true)
-    public Map<Long, List<String>> getTop4ImagesMapByBookCollectionId(List<Long> bookCollectionIds) {
-        List<Image> images = imageRepository.findAllByBookCollectionIds(bookCollectionIds);
+    public Map<Long, List<String>> getTop4ImagesMapByCollectionId(List<Long> collectionIds) {
+        List<Image> images = imageRepository.findAllByCollectionIds(collectionIds);
 
         return images.stream()
                 .collect(Collectors.groupingBy(

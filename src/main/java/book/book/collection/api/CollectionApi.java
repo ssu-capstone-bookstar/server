@@ -43,6 +43,11 @@ public class CollectionApi {
         collectionService.deleteCollection(memberId, collection_id);
     }
 
+    @GetMapping("/me")
+    public ResponseForm<CollectionResponses> getMyCollections(@AuthenticationPrincipal Long memberId) {
+        return new ResponseForm<>(collectionService.getMyCollections(memberId));
+    }
+
 
     /**
      * Collection Like 관련
@@ -60,8 +65,8 @@ public class CollectionApi {
         collectionLikeService.deleteCollectionLike(memberId, collection_id);
     }
 
-    @GetMapping("/like/collection")
+    @GetMapping("/like")
     public ResponseForm<CollectionResponses> getLikedCollection(@AuthenticationPrincipal Long memberId) {
-        return new ResponseForm<>(collectionLikeService.getLikedCollection(memberId));
+        return new ResponseForm<>(collectionLikeService.getLikedCollections(memberId));
     }
 }
