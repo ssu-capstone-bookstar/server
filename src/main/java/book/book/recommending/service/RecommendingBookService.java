@@ -3,7 +3,6 @@ package book.book.recommending.service;
 import book.book.book.entity.Book;
 import book.book.book.repository.BookRepository;
 import book.book.collection.dto.MinmumBookInfoRequest;
-import book.book.collection.entity.CollectionBook;
 import book.book.recommending.entity.Recommending;
 import book.book.recommending.entity.RecommendingBook;
 import book.book.recommending.repository.RecommendingBookRepository;
