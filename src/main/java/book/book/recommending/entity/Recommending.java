@@ -1,4 +1,4 @@
-package book.book.recommending;
+package book.book.recommending.entity;
 
 import book.book.member.entity.Member;
 import jakarta.persistence.*;
@@ -15,10 +15,15 @@ public class Recommending {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "recommended_id", nullable = false)
+    private Member recommended;
+
+    @ManyToOne
     @JoinColumn(name = "recommender_id", nullable = false)
     private Member recommender;
 
-    @ManyToOne
-    @JoinColumn(name = "recommended_id", nullable = false)
-    private Member recommended;
+    public Recommending(Member recommended, Member recommender) {
+        this.recommended = recommended;
+        this.recommender = recommender;
+    }
 }
