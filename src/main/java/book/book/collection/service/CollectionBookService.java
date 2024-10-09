@@ -2,7 +2,7 @@ package book.book.collection.service;
 
 import book.book.book.entity.Book;
 import book.book.book.repository.BookRepository;
-import book.book.collection.dto.BookInfoRequest;
+import book.book.collection.dto.MinmumBookInfoRequest;
 import book.book.collection.entity.Collection;
 import book.book.collection.entity.CollectionBook;
 import book.book.collection.repository.CollectionBookRepository;
@@ -22,11 +22,11 @@ public class CollectionBookService {
 
     @Transactional
     public void saveCollectionBooks(Collection collection,
-                                         List<BookInfoRequest> bookInfoRequests) {
+                                         List<MinmumBookInfoRequest> minmumBookInfoRequests) {
         List<CollectionBook> collectionBooks =  new ArrayList<>();
 
-        for (BookInfoRequest bookInfoRequest : bookInfoRequests) {
-            Book book = bookRepository.findByIsbnOrElseThrow(bookInfoRequest.getIsbn());
+        for (MinmumBookInfoRequest minmumBookInfoRequest : minmumBookInfoRequests) {
+            Book book = bookRepository.findByIsbnOrElseThrow(minmumBookInfoRequest.getIsbn());
             collectionBooks.add(new CollectionBook(collection, book));
         }
         collectionBookRepository.saveAll(collectionBooks);

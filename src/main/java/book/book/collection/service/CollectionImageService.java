@@ -1,6 +1,6 @@
 package book.book.collection.service;
 
-import book.book.collection.dto.BookInfoRequest;
+import book.book.collection.dto.MinmumBookInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CollectionImageService {
 
-    public List<String> getBookCollectionThumbnail(List<BookInfoRequest> bookInfoRequests) {
-        return bookInfoRequests.stream()
-                .map(BookInfoRequest::getBookCoverImage)
+    public List<String> getBookCollectionThumbnail(List<MinmumBookInfoRequest> minmumBookInfoRequests) {
+        return minmumBookInfoRequests.stream()
+                .map(MinmumBookInfoRequest::getBookCoverImage)
                 .filter(Objects::nonNull)
                 .limit(4)
                 .toList();
