@@ -53,8 +53,8 @@ public class CollectionLikeService {
      * => 관리하기 힘듦 것 같음 NO
      */
     @Transactional(readOnly = true)
-    public CollectionResponses getLikedCollection(Long memberId) {
-        List<Collection> collections = collectionRepository.findLikedBookCollection(memberId);
+    public CollectionResponses getLikedCollections(Long memberId) {
+        List<Collection> collections = collectionRepository.findLikedBookCollections(memberId);
 
         List<Long> bookCollectionIds = getBookCollectionIds(collections);
         Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByBookCollectionId(bookCollectionIds);

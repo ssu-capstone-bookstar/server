@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CollectionRepositoryCustom {
 
-    List<Collection> findLikedBookCollection(Long memberId);
+    List<Collection> findLikedBookCollections(Long memberId);
 }

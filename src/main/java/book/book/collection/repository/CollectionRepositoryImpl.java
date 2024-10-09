@@ -15,7 +15,7 @@ public class CollectionRepositoryImpl implements CollectionRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<Collection> findLikedBookCollection(Long memberId) {
+    public List<Collection> findLikedBookCollections(Long memberId) {
         return queryFactory
                 .selectFrom(bookCollection)
                 .join(bookCollectionLike).on(bookCollectionLike.bookCollection.id.eq(bookCollection.id))
