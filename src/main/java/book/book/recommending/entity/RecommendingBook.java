@@ -1,4 +1,4 @@
-package book.book.recommending;
+package book.book.recommending.entity;
 
 import book.book.book.entity.Book;
 import jakarta.persistence.*;
@@ -21,4 +21,9 @@ public class RecommendingBook {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Book book;
+
+    public RecommendingBook(Recommending recommending, Book book) {
+        this.recommending = recommending;
+        this.book = book;
+    }
 }

@@ -6,6 +6,9 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+/**
+ * ISBN (유일값) 기준으로 책을 찾습니다
+ */
 @Entity
 @Table(name = "book")
 @Getter

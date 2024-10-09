@@ -11,6 +11,6 @@ public class SaveCollectionRequest {
     private String name;
     @Max(200)
     private String description;
-    private List<BookInfoRequest> bookInfos;
+    private List<MinmumBookInfoRequest> bookInfos;
 
 }
