@@ -43,27 +43,5 @@ public class MemberBookService {
         memberBookRepository.deleteByMemberAndBook(member, book);
     }
 
-    @Transactional
-    public void saveBookComment(Long memberId, Long bookId, SavedBookCommentRequest rq) {
-        Member member = memberRepository.findByIdOrElseThrow(memberId);
-        Book book = bookRepository.findByIdOrElseThrow(bookId);
 
-        MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
-                .orElse(new MemberBook());
-
-        memberBook.updateBookComment(rq.getComment());
-
-        memberBookRepository.save(memberBook);
-    }
-
-    @Transactional
-    public void deleteBookComment(Long memberId, Long bookId) {
-        Member member = memberRepository.findByIdOrElseThrow(memberId);
-        Book book = bookRepository.findByIdOrElseThrow(bookId);
-
-        MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
-                .orElseThrow(() -> new CustomException(ResultCode.MEMBERBOOK_NOT_FOUND));
-
-        memberBook.deleteBookComment();
-    }
 }
