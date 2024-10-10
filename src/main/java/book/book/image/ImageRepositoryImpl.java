@@ -7,6 +7,7 @@ import java.util.List;
 
 import static book.book.collection.entity.QCollectionBook.collectionBook;
 import static book.book.image.QImage.image;
+import static book.book.book.entity.QBook.book;
 
 @RequiredArgsConstructor
 public class ImageRepositoryImpl implements ImageRepositoryCustom {
@@ -23,11 +24,13 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom {
      * 그룹당 결과 수를 제한하려면(예: 데이터베이스에서 직접 bookCollectionBook당 상위 4개 이미지 가져오기) 일반적으로 SQL의 ROW_NUMBER()
      * Java에서 사후 처리를 적용합니다(대규모 데이터 세트의 경우 효율성이 떨어짐).
      */
+    //TODO 쿼리점검
     @Override
     public List<Image> findAllByCollectionIds(List<Long> collectionIds) {
         return queryFactory
                 .selectFrom(image)
-                .join(collectionBook).on(image.domainId.eq(collectionBook.id))
+                .join(book).on(image.domainId.eq(book.id))
+                .join(collectionBook).on(book.id.eq(collectionBook.book.id))
                 .where(collectionBook.collection.id.in(collectionIds))
                 .orderBy(image.domainId.asc(), image.createdDate.asc())
                 .fetch();

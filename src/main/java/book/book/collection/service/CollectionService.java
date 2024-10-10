@@ -92,7 +92,7 @@ public class CollectionService {
         List<Collection> collections = collectionRepository.findMyCollections(memberId);
 
         List<Long> collectionIds = getCollectionIds(collections);
-        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByCollectionId(collectionIds);
+        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByCollectionIds(collectionIds);
 
         return CollectionResponses.of(collections, imagesMap);
     }

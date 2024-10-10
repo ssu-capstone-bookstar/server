@@ -15,7 +15,7 @@ public class ImageService {
 
 
     @Transactional(readOnly = true)
-    public Map<Long, List<String>> getTop4ImagesMapByCollectionId(List<Long> collectionIds) {
+    public Map<Long, List<String>> getTop4ImagesMapByCollectionIds(List<Long> collectionIds) {
         List<Image> images = imageRepository.findAllByCollectionIds(collectionIds);
 
         return images.stream()
