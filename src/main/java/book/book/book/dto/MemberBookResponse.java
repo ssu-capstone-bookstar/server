@@ -6,15 +6,15 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookThumbnailResponse {
+public class MemberBookResponse {
     private Long memberBookId;
     private String title;
     private String bookCoverImage;
     private Float averageStar;
     private Float myStar;
 
-    public static BookThumbnailResponse of(MemberBook memberBook, String imagePath) {
-        return new BookThumbnailResponse(
+    public static MemberBookResponse of(MemberBook memberBook, String imagePath) {
+        return new MemberBookResponse(
                 memberBook.getId(),
                 memberBook.getBook().getTitle(),
                 imagePath,

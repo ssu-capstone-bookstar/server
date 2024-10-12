@@ -1,6 +1,6 @@
 package book.book;
 
-import book.book.common.CursorPageResponse;
+import book.book.common.Response.CursorPageResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
