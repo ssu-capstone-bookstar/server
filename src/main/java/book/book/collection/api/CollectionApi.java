@@ -6,7 +6,7 @@ import book.book.collection.dto.SaveCollectionRequest;
 import book.book.collection.dto.UpdateCollectionRequest;
 import book.book.collection.service.CollectionLikeService;
 import book.book.collection.service.CollectionService;
-import book.book.common.ResponseForm;
+import book.book.common.Response.ResponseForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
