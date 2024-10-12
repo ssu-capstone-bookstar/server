@@ -1,4 +1,4 @@
-package book.book.common;
+package book.book.common.Response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package book.book.book.service;
 
-import book.book.book.dto.BookThumbnailResponse;
+import book.book.book.dto.MemberBookResponse;
 import book.book.book.dto.SaveReadingStatusRequest;
 import book.book.book.entity.Book;
 import book.book.book.entity.MemberBook;
@@ -8,7 +8,7 @@ import book.book.book.entity.ReadingStatus;
 import book.book.book.repository.BookRepository;
 import book.book.book.repository.MemberBookRepository;
 import book.book.book.sort.SortType;
-import book.book.common.CursorPageResponse;
+import book.book.common.Response.CursorPageResponse;
 import book.book.image.ImageService;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
@@ -51,7 +51,7 @@ public class MemberBookService {
     }
 
     @Transactional(readOnly = true)
-    public CursorPageResponse<BookThumbnailResponse> getBookByReadingStatus(
+    public CursorPageResponse<MemberBookResponse> getBookByReadingStatus(
             Long memberId,
             ReadingStatus readingStatus,
             SortType sort,
@@ -62,9 +62,9 @@ public class MemberBookService {
 
         Map<Long, String> imagesMap = imageService.getAllByBookIds(bookIds);
 
-        List<BookThumbnailResponse> bookThumbnailResponses = MappingMemberBookAndImage.mapping(memberBooks, imagesMap);
-        return CursorPageResponse.of(bookThumbnailResponses, PAGE_SIZE, BookThumbnailResponse::getMemberBookId);
+        List<MemberBookResponse> memberBookResponses = MappingMemberBookAndImage.mapping(memberBooks, imagesMap);
 
+        return CursorPageResponse.of(memberBookResponses, PAGE_SIZE, MemberBookResponse::getMemberBookId);
     }
 
     private List<Long> getBookIds(List<MemberBook> memberBooks) {
