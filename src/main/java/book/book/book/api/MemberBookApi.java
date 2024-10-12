@@ -1,8 +1,12 @@
 package book.book.book.api;
 
+import book.book.book.dto.BookThumbnailResponse;
 import book.book.book.dto.SaveReadingStatusRequest;
-import book.book.book.dto.SavedBookCommentRequest;
+import book.book.book.entity.ReadingStatus;
 import book.book.book.service.MemberBookService;
+import book.book.book.sort.SortType;
+import book.book.common.CursorPageResponse;
+import book.book.common.ResponseForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +18,19 @@ import org.springframework.web.bind.annotation.*;
 public class MemberBookApi {
 
     private final MemberBookService memberBookService;
+
+    @GetMapping("/reading_statuss")
+    public ResponseForm<CursorPageResponse<BookThumbnailResponse>> getBookByReadingStatus(
+            @AuthenticationPrincipal Long memberId,
+            @RequestParam
+            ReadingStatus readingStatus,
+            @RequestParam
+            SortType sort,
+            @RequestParam(required = false)
+            Long cursorId) {
+
+        return new ResponseForm<>(memberBookService.getBookByReadingStatus(memberId, readingStatus, sort, cursorId));
+    }
 
     @PostMapping("/{book_id}/reading_status")
     public void saveReadingStatus(@AuthenticationPrincipal Long memberId,

@@ -30,4 +30,15 @@ public class ImageService {
                         )
                 ));
     }
+
+    @Transactional(readOnly = true)
+    public Map<Long, String> getAllByBookIds(List<Long> bookIds) {
+        List<Image> images = imageRepository.findAllByBookIds(bookIds);
+
+        return images.stream()
+                .collect(Collectors.toMap(
+                        Image::getDomainId,
+                        Image::getPath)
+                );
+    }
 }

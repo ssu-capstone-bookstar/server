@@ -35,4 +35,14 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom {
                 .orderBy(image.domainId.asc(), image.createdDate.asc())
                 .fetch();
     }
+
+    @Override
+    public List<Image> findAllByBookIds(List<Long> bookIds) {
+        return queryFactory
+                .selectFrom(image)
+                .join(book).on(image.domainId.eq(book.id))
+                .where(book.id.in(bookIds))
+                .orderBy(image.domainId.asc())
+                .fetch();
+    }
 }
