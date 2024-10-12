@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Book extends BaseTimeEntity {  //속성 추가 예정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private Long id;
 
     @Column
     private String title;

@@ -56,7 +56,7 @@ public class CollectionLikeService {
         List<Collection> collections = collectionLikeRepository.findLikedCollections(memberId);
 
         List<Long> collectionIds = getcollectionIds(collections);
-        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByCollectionId(collectionIds);
+        Map<Long, List<String>> imagesMap = imageService.getTop4ImagesMapByCollectionIds(collectionIds);
 
         return CollectionResponses.of(collections, imagesMap);
     }

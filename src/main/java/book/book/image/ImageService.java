@@ -15,7 +15,7 @@ public class ImageService {
 
 
     @Transactional(readOnly = true)
-    public Map<Long, List<String>> getTop4ImagesMapByCollectionId(List<Long> collectionIds) {
+    public Map<Long, List<String>> getTop4ImagesMapByCollectionIds(List<Long> collectionIds) {
         List<Image> images = imageRepository.findAllByCollectionIds(collectionIds);
 
         return images.stream()
@@ -29,5 +29,16 @@ public class ImageService {
                                         toList() // 4개로 List<Image> 길이를 제한한다
                         )
                 ));
+    }
+
+    @Transactional(readOnly = true)
+    public Map<Long, String> getAllByBookIds(List<Long> bookIds) {
+        List<Image> images = imageRepository.findAllByBookIds(bookIds);
+
+        return images.stream()
+                .collect(Collectors.toMap(
+                        Image::getDomainId,
+                        Image::getPath)
+                );
     }
 }

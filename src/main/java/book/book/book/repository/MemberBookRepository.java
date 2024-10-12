@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MemberBookRepository extends JpaRepository<MemberBook, Long> {
+public interface MemberBookRepository extends JpaRepository<MemberBook, Long>, MemberBookRepositoryCustom {
 
     Optional<MemberBook> findById(Long memberBookId);
 
