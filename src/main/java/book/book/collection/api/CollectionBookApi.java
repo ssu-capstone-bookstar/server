@@ -15,7 +15,7 @@ public class CollectionBookApi {
     private final CollectionBookService collectionBookService;
 
     @GetMapping("{collection_id}/books")
-    public ResponseForm<CursorPageResponse<CollectionBookResponse>> getMyCollections(@PathVariable Long collection_id,
+    public ResponseForm<CursorPageResponse<CollectionBookResponse>> getMyCollectionBooks(@PathVariable Long collection_id,
                                                                                      @RequestParam(required = false) Long cursorId) {
 
         return new ResponseForm<>(collectionBookService.getMyCollectionBooks(collection_id, cursorId));

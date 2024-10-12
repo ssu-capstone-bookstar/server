@@ -16,9 +16,6 @@ public class CollectionBookImpl implements CollectionBookCustom{
 
     private final JPAQueryFactory queryFactory;
 
-    /**
-     * memberBookId로 커서를 써야 하나 BookId로 써야 하나
-     */
     @Override
     public List<CollectionBook> findBooks(
             Long collcetinoId,
