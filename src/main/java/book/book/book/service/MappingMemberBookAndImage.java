@@ -4,6 +4,8 @@ import book.book.book.dto.MemberBookResponse;
 import book.book.book.entity.MemberBook;
 import book.book.collection.dto.CollectionBookResponse;
 import book.book.collection.entity.CollectionBook;
+import book.book.recommending.dto.RecommendingBookResponse;
+import book.book.recommending.entity.RecommendingBook;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,5 +50,20 @@ public class MappingMemberBookAndImage {
         }
 
         return collectionBookResponses;
+    }
+
+
+    public static List<RecommendingBookResponse> mappingRecommendingBook(List<RecommendingBook> recommendingBooks, Map<Long, String> imagesMap) {
+        List<RecommendingBookResponse> recommendingBookResponses = new ArrayList<>();
+
+        for (RecommendingBook recommendingBook : recommendingBooks) {
+            String imagePath = imagesMap.get(recommendingBook.getBook().getId());
+
+            RecommendingBookResponse response = RecommendingBookResponse.of(recommendingBook, imagePath);
+
+            recommendingBookResponses.add(response);
+        }
+
+        return recommendingBookResponses;
     }
 }
