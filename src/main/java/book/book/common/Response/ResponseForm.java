@@ -1,5 +1,6 @@
-package book.book.common;
+package book.book.common.Response;
 
+import book.book.common.ResultCode;
 import lombok.Data;
 
 @Data
