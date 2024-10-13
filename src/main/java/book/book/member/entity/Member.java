@@ -13,7 +13,7 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Column(length = 100)
-    private String nickname;
+    private String nickName;
 
     @Column
     private String profileImage;
