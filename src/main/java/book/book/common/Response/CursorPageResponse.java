@@ -15,7 +15,7 @@ public class CursorPageResponse<T> {
     private final Boolean hasNext;
 
     /**
-     요청 성공 시, 응답 dto 객체를 파라미터로 받음
+     * 요청 성공 시, 응답 dto 객체를 파라미터로 받음
      */
     public static <T> CursorPageResponse<T> of(List<T> data, int pageSize, ToLongFunction<T> idExtractor) {
         boolean hasNext = data.size() > pageSize;
