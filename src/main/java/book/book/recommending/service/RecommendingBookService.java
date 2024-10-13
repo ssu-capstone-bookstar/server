@@ -3,6 +3,7 @@ package book.book.recommending.service;
 import book.book.book.entity.Book;
 import book.book.book.repository.BookRepository;
 import book.book.book.service.MappingMemberBookAndImage;
+import book.book.book.sort.SortType;
 import book.book.collection.dto.MinmumBookInfoRequest;
 import book.book.common.Response.CursorPageResponse;
 import book.book.image.ImageService;
@@ -33,6 +34,7 @@ public class RecommendingBookService {
     @Transactional
     public void saveCollectionBooks(Recommending Recommending,
                                     List<MinmumBookInfoRequest> minmumBookInfoRequests) {
+
         List<RecommendingBook> recommendingBooks = new ArrayList<>();
 
         for (MinmumBookInfoRequest minmumBookInfoRequest : minmumBookInfoRequests) {
@@ -44,8 +46,12 @@ public class RecommendingBookService {
     }
 
     @Transactional(readOnly = true)
-    public CursorPageResponse<RecommendingBookResponse> getRecommendedBooks(Long recommenedId, Long cursorId) {
-        List<RecommendingBook> recommendingBooks = recommendingBookRepository.findBooksOnRecommended(recommenedId, cursorId, PAGE_SIZE);
+    public CursorPageResponse<RecommendingBookResponse> getRecommendedBooks(Long recommenedId, SortType sortType, Long cursorId) {
+        List<RecommendingBook> recommendingBooks = recommendingBookRepository.findBooksOnRecommended(
+                recommenedId,
+                sortType,
+                cursorId,
+                PAGE_SIZE);
         List<Long> bookIds = getBookIds(recommendingBooks);
 
         Map<Long, String> imagesMap = imageService.getAllByBookIds(bookIds);

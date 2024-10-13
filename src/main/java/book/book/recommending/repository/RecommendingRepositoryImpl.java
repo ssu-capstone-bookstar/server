@@ -19,6 +19,7 @@ public class RecommendingRepositoryImpl implements RecommendingRepositoryCustom 
     @Override
     public List<RecommendingBook> findBooksOnRecommended(
             Long recommendedId,
+            SortType sortType,
             Long cursorId,
             Integer pageSize) {
 
@@ -32,7 +33,7 @@ public class RecommendingRepositoryImpl implements RecommendingRepositoryCustom 
                 .selectFrom(recommendingBook)
                 .innerJoin(recommendingBook.book, book).fetchJoin()
                 .where(whereClause)
-                .orderBy(SortType.RECENT.getOrderExpression())
+                .orderBy(sortType.getOrderExpression())
                 .limit(pageSize)
                 .fetch();
     }
