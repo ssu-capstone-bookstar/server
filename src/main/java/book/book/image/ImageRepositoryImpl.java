@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static book.book.book.entity.QBook.book;
 import static book.book.collection.entity.QCollectionBook.collectionBook;
 import static book.book.image.QImage.image;
-import static book.book.book.entity.QBook.book;
 
 @RequiredArgsConstructor
 public class ImageRepositoryImpl implements ImageRepositoryCustom {
@@ -29,7 +29,7 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom {
     public List<Image> findAllByCollectionIds(List<Long> collectionIds) {
         return queryFactory
                 .selectFrom(image)
-                .join(book).on(image.domainId.eq(book.id))
+                .join(book).on(image.domainId.eq(book.id).and(image.imageCategory.eq(ImageCategory.BOOK)))
                 .join(collectionBook).on(book.id.eq(collectionBook.book.id))
                 .where(collectionBook.collection.id.in(collectionIds))
                 .orderBy(image.domainId.asc(), image.createdDate.asc())
@@ -41,7 +41,7 @@ public class ImageRepositoryImpl implements ImageRepositoryCustom {
         return queryFactory
                 .selectFrom(image)
                 .join(book).on(image.domainId.eq(book.id))
-                .where(book.id.in(bookIds))
+                .where(book.id.in(bookIds).and(image.imageCategory.eq(ImageCategory.BOOK)))
                 .orderBy(image.domainId.asc())
                 .fetch();
     }

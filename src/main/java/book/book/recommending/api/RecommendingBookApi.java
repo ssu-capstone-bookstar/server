@@ -1,5 +1,6 @@
 package book.book.recommending.api;
 
+import book.book.book.sort.SortType;
 import book.book.common.Response.CursorPageResponse;
 import book.book.common.Response.ResponseForm;
 import book.book.recommending.dto.RecommendingBookResponse;
@@ -14,10 +15,13 @@ public class RecommendingBookApi {
     private final RecommendingBookService recommendingBookService;
 
     @GetMapping("/books/{recommened_id}")
-    public ResponseForm<CursorPageResponse<RecommendingBookResponse>> getRecommendedBooks(
-            @PathVariable Long recommened_id,
-            @RequestParam(required = false) Long cursorId) {
+    public ResponseForm<CursorPageResponse<RecommendingBookResponse>> getRecommendedBooks(@PathVariable
+                                                                                          Long recommened_id,
+                                                                                          @RequestParam
+                                                                                          SortType sortType,
+                                                                                          @RequestParam(required = false)
+                                                                                          Long cursorId) {
 
-        return new ResponseForm<>(recommendingBookService.getRecommendedBooks(recommened_id, cursorId));
+        return new ResponseForm<>(recommendingBookService.getRecommendedBooks(recommened_id, sortType, cursorId));
     }
 }

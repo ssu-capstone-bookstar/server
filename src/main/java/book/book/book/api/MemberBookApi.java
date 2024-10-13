@@ -20,16 +20,16 @@ public class MemberBookApi {
     private final MemberBookService memberBookService;
 
     @GetMapping("/reading_status")
-    public ResponseForm<CursorPageResponse<MemberBookResponse>> getBookByReadingStatus(
-            @AuthenticationPrincipal Long memberId,
-            @RequestParam
-            ReadingStatus readingStatus,
-            @RequestParam
-            SortType sort,
-            @RequestParam(required = false)
-            Long cursorId) {
+    public ResponseForm<CursorPageResponse<MemberBookResponse>> getBookByReadingStatus(@AuthenticationPrincipal
+                                                                                       Long memberId,
+                                                                                       @RequestParam
+                                                                                       ReadingStatus readingStatus,
+                                                                                       @RequestParam
+                                                                                       SortType sortType,
+                                                                                       @RequestParam(required = false)
+                                                                                       Long cursorId) {
 
-        return new ResponseForm<>(memberBookService.getBookByReadingStatus(memberId, readingStatus, sort, cursorId));
+        return new ResponseForm<>(memberBookService.getBookByReadingStatus(memberId, readingStatus, sortType, cursorId));
     }
 
     @PostMapping("/{book_id}/reading_status")

@@ -19,6 +19,7 @@ public class CollectionBookImpl implements CollectionBookCustom{
     @Override
     public List<CollectionBook> findBooks(
             Long collcetinoId,
+            SortType sortType,
             Long cursorId,
             Integer pageSize) {
 
@@ -32,7 +33,7 @@ public class CollectionBookImpl implements CollectionBookCustom{
                 .selectFrom(collectionBook)
                 .innerJoin(collectionBook.book, book).fetchJoin()
                 .where(whereClause)
-                .orderBy(SortType.RECENT.getOrderExpression())
+                .orderBy(sortType.getOrderExpression())
                 .limit(pageSize)
                 .fetch();
     }

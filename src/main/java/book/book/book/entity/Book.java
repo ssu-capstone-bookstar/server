@@ -34,6 +34,5 @@ public class Book extends BaseTimeEntity {  //속성 추가 예정
 
     private LocalDateTime publishedDate;
 
-    private String bookCoverImage;
 
 }

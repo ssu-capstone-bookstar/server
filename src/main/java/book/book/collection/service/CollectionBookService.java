@@ -3,6 +3,7 @@ package book.book.collection.service;
 import book.book.book.entity.Book;
 import book.book.book.repository.BookRepository;
 import book.book.book.service.MappingMemberBookAndImage;
+import book.book.book.sort.SortType;
 import book.book.collection.dto.CollectionBookResponse;
 import book.book.collection.dto.MinmumBookInfoRequest;
 import book.book.collection.entity.Collection;
@@ -45,8 +46,8 @@ public class CollectionBookService {
     }
 
     @Transactional(readOnly = true)
-    public CursorPageResponse<CollectionBookResponse> getMyCollectionBooks(Long collectionId, Long cursorId) {
-        List<CollectionBook> collectionBooks = collectionBookRepository.findBooks(collectionId, cursorId, PAGE_SIZE);
+    public CursorPageResponse<CollectionBookResponse> getMyCollectionBooks(Long collectionId, SortType sortType, Long cursorId) {
+        List<CollectionBook> collectionBooks = collectionBookRepository.findBooks(collectionId, sortType, cursorId, PAGE_SIZE);
         List<Long> bookIds = getBookIds(collectionBooks);
 
         Map<Long, String> imagesMap = imageService.getAllByBookIds(bookIds);
