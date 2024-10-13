@@ -1,7 +1,11 @@
 package book.book.book.api;
 
+import book.book.book.dto.MyCommentResponse;
 import book.book.book.dto.SavedBookCommentRequest;
 import book.book.book.service.bookCommentService;
+import book.book.book.sort.SortType;
+import book.book.common.Response.CursorPageResponse;
+import book.book.common.Response.ResponseForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,7 +18,16 @@ public class BookCommentApi {
 
     private final bookCommentService bookCommentService;
 
-    @PostMapping("/book-comment")
+    @GetMapping("/comment/me")
+    public ResponseForm<CursorPageResponse<MyCommentResponse>> getMyComments(@AuthenticationPrincipal
+                                                                             Long memberId,
+                                                                             @RequestParam
+                                                                             SortType sortType,
+                                                                             @RequestParam(required = false) Long cursorId) {
+        return new ResponseForm<>(bookCommentService.getMyComments(memberId, sortType, cursorId));
+    }
+
+    @PostMapping("/book_comment/{book_id}")
     public void saveBookComment(@AuthenticationPrincipal Long memberId,
                                 @PathVariable Long book_id,
                                 @RequestBody @Valid SavedBookCommentRequest request) {
@@ -22,7 +35,7 @@ public class BookCommentApi {
     }
 
 
-    @DeleteMapping("/book-comment")
+    @DeleteMapping("/book_comment/{book_id}")
     public void deleteBookComment(@AuthenticationPrincipal Long memberId,
                                   @PathVariable Long book_id) {
         bookCommentService.deleteBookComment(memberId, book_id);

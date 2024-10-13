@@ -51,13 +51,12 @@ public class MemberBookService {
     }
 
     @Transactional(readOnly = true)
-    public CursorPageResponse<MemberBookResponse> getBookByReadingStatus(
-            Long memberId,
-            ReadingStatus readingStatus,
-            SortType sort,
-            Long cursorId) {
+    public CursorPageResponse<MemberBookResponse> getBookByReadingStatus(Long memberId,
+                                                                         ReadingStatus readingStatus,
+                                                                         SortType sortType,
+                                                                         Long cursorId) {
 
-        List<MemberBook> memberBooks = memberBookRepository.findBookByReadingStatus(memberId, readingStatus, sort, cursorId, PAGE_SIZE);
+        List<MemberBook> memberBooks = memberBookRepository.findBookByReadingStatus(memberId, readingStatus, sortType, cursorId, PAGE_SIZE);
         List<Long> bookIds = getBookIds(memberBooks);
 
         Map<Long, String> imagesMap = imageService.getAllByBookIds(bookIds);

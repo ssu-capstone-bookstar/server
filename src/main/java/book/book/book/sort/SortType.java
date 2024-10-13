@@ -3,6 +3,8 @@ package book.book.book.sort;
 
 import book.book.book.entity.QBook;
 import book.book.book.entity.QMemberBook;
+import book.book.collection.entity.QCollectionBook;
+import book.book.recommending.entity.QRecommendingBook;
 import com.querydsl.core.types.OrderSpecifier;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,9 @@ import java.util.function.Supplier;
 @Getter
 @RequiredArgsConstructor
 public enum SortType {
-    RECENT("최근에 담은 순", () -> List.of(QMemberBook.memberBook.createdDate.desc())),
+    MEMEBER_BOOK_RECENT("내 서제에 최근에 담은 순", () -> List.of(QMemberBook.memberBook.updatedDate.desc())),
+    COLLECTION_BOOK_RECENT("내 컬렉션에 최근에 담은 순", () -> List.of(QCollectionBook.collectionBook.createdDate.desc())),
+    RECOMMENDING_BOOK_RECENT("내 추천함에 최근에 담은 순", () -> List.of(QRecommendingBook.recommendingBook.createdDate.desc())),
 //    AVEARAGE_RATING("평균 별점 높은 순", () -> List.of(QBoard.board.expectedRating.desc(), QBoard.board.id.desc())),
     MY_RATING("내 별점 높은 순", () -> List.of(QMemberBook.memberBook.star.count.desc(), QBook.book.id.desc())),
     KOREAN_ALPHABETICAL("가나다 순", () -> List.of(QBook.book.title.asc(), QBook.book.id.desc())),
