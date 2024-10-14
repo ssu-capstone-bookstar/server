@@ -34,3 +34,8 @@ cloud:
       auto: false
     stack:
       auto: false
+
+aladin:
+  api:
+    ttbkey: ttboes07012053001
+
