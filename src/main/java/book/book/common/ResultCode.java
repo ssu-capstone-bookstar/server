@@ -39,8 +39,17 @@ public enum ResultCode {
 
     // B7xx: Collection 예외
     COLLECTION_NOT_FOUND("B700", "존재하지 않는 북콜렉션입니다.", HttpStatus.NOT_FOUND),
-    BOOKCOLLECTION_ALREADY("B701", "나의 북콜렉션 중 같은 이름의 북콜렉션이 존재합니다.", HttpStatus.BAD_REQUEST)
-    ;
+    BOOKCOLLECTION_ALREADY("B701", "나의 북콜렉션 중 같은 이름의 북콜렉션이 존재합니다.", HttpStatus.BAD_REQUEST),
+
+    // B8xx: 알라딘 API 관련 에러
+    ALADIN_API_ERROR("B800", "알라딘 API 호출 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+    ALADIN_SEARCH_ERROR("B801", "알라딘 도서 검색 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+    ALADIN_ITEM_LOOKUP_ERROR("B802", "알라딘 도서 상세 조회 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+    ALADIN_NETWORK_ERROR("B803", "알라딘 API 서버와의 통신 중 오류가 발생했습니다.", HttpStatus.SERVICE_UNAVAILABLE),
+    ALADIN_INVALID_RESPONSE("B804", "알라딘 API로부터 유효하지 않은 응답을 받았습니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+
+    // B9xx: 기타 예외
+    PARE_DATE_STRING_ERROR("B900", "String값을 Date로 파싱도중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 
     private final String code;
     private final String message;

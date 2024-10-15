@@ -1,5 +1,6 @@
 package book.book.common.Response;
 
+import book.book.search.dto.aladin.AladinApiCommonResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -30,5 +31,15 @@ public class CursorPageResponse<T> {
         }
 
         return new CursorPageResponse<>(data, nextCursor, hasNext);
+    }
+
+    public static <T> CursorPageResponse<T> ofAladinResponse(List<T> data, AladinApiCommonResponse pageInfo) {
+        Integer itemsPerPage = pageInfo.getItemsPerPage();
+        Integer startIndex = pageInfo.getStartIndex();
+        Integer totalResults = pageInfo.getTotalResults();
+
+        boolean hasNext = totalResults <= itemsPerPage * startIndex;
+
+        return new CursorPageResponse<>(data, startIndex.longValue() + 1, hasNext);
     }
 }
