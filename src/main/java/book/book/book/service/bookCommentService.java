@@ -10,11 +10,10 @@ import book.book.book.repository.BookRepository;
 import book.book.book.repository.MemberBookRepository;
 import book.book.book.sort.SortType;
 import book.book.common.CustomException;
-import book.book.common.Response.CursorPageResponse;
 import book.book.common.ResultCode;
+import book.book.common.response.CursorPageResponse;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
-import book.book.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +29,6 @@ public class bookCommentService {
     private final MemberBookRepository memberBookRepository;
     private final BookCommentLikeRepository bookCommentLikeRepository;
     private final BookRepository bookRepository;
-    private final MemberService memberService;
 
     /**
      * Response 두개 를 더해 Response 하나를 만들 때 CusrorPageResponse를 어떻게 만들까?

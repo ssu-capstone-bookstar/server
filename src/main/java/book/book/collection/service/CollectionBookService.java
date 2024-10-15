@@ -9,7 +9,7 @@ import book.book.collection.dto.MinmumBookInfoRequest;
 import book.book.collection.entity.Collection;
 import book.book.collection.entity.CollectionBook;
 import book.book.collection.repository.collectionbook.CollectionBookRepository;
-import book.book.common.Response.CursorPageResponse;
+import book.book.common.response.CursorPageResponse;
 import book.book.image.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class CollectionBookService {
         List<CollectionBook> collectionBooks = new ArrayList<>();
 
         for (MinmumBookInfoRequest minmumBookInfoRequest : minmumBookInfoRequests) {
-            Book book = bookRepository.findByIsbnOrElseThrow(minmumBookInfoRequest.getIsbn());
+            Book book = bookRepository.findByIsbn13OrElseThrow(minmumBookInfoRequest.getIsbn13());
             collectionBooks.add(new CollectionBook(collection, book));
         }
         collectionBookRepository.saveAll(collectionBooks);

@@ -1,6 +1,6 @@
 package book.book.common;
 
-import book.book.common.Response.ResponseForm;
+import book.book.common.response.ResponseForm;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

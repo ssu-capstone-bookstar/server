@@ -1,8 +1,8 @@
 package book.book.recommending.api;
 
 import book.book.book.sort.SortType;
-import book.book.common.Response.CursorPageResponse;
-import book.book.common.Response.ResponseForm;
+import book.book.common.response.CursorPageResponse;
+import book.book.common.response.ResponseForm;
 import book.book.recommending.dto.RecommendingBookResponse;
 import book.book.recommending.service.RecommendingBookService;
 import lombok.RequiredArgsConstructor;

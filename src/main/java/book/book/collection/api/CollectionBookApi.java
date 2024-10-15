@@ -3,8 +3,8 @@ package book.book.collection.api;
 import book.book.book.sort.SortType;
 import book.book.collection.dto.CollectionBookResponse;
 import book.book.collection.service.CollectionBookService;
-import book.book.common.Response.CursorPageResponse;
-import book.book.common.Response.ResponseForm;
+import book.book.common.response.CursorPageResponse;
+import book.book.common.response.ResponseForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
