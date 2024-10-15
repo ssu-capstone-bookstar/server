@@ -34,7 +34,7 @@ public class CollectionBookService {
         List<CollectionBook> collectionBooks = new ArrayList<>();
 
         for (MinmumBookInfoRequest minmumBookInfoRequest : minmumBookInfoRequests) {
-            Book book = bookRepository.findByIsbnOrElseThrow(minmumBookInfoRequest.getIsbn());
+            Book book = bookRepository.findByIsbn13OrElseThrow(minmumBookInfoRequest.getIsbn13());
             collectionBooks.add(new CollectionBook(collection, book));
         }
         collectionBookRepository.saveAll(collectionBooks);
