@@ -17,7 +17,7 @@ public class SearchApi {
 
     private final SearchService searchService;
 
-    @GetMapping("/comment/me")
+    @GetMapping("/books/aladin")
     public ResponseForm<CursorPageResponse<SearchBookResponse>> getBooksByAladin(@RequestParam String query,
                                                                                  @RequestParam int start) {
         return new ResponseForm<>(searchService.getBooksByAladin(query, start));
