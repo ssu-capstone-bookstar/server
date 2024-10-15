@@ -1,4 +1,4 @@
-package book.book.common.Response;
+package book.book.common.response;
 
 import book.book.search.dto.aladin.AladinApiCommonResponse;
 import lombok.Getter;
@@ -20,14 +20,12 @@ public class CursorPageResponse<T> {
      */
     public static <T> CursorPageResponse<T> of(List<T> data, int pageSize, ToLongFunction<T> idExtractor) {
         boolean hasNext = data.size() > pageSize;
-        Long nextCursor = null;
+        Long nextCursor = -1L;
 
         if (hasNext) {
             T lastReponse = data.get(pageSize - 1);
             nextCursor = idExtractor.applyAsLong(lastReponse);
             data = data.subList(0, pageSize);
-        } else {
-            nextCursor = -1L;
         }
 
         return new CursorPageResponse<>(data, nextCursor, hasNext);

@@ -6,12 +6,12 @@ import book.book.search.dto.aladin.AladinItemLookUpResponse;
 import book.book.search.dto.aladin.AladinSearchResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -50,7 +50,7 @@ public class AladinService {
         } catch (CustomException e) {
             throw e;
         } catch (Exception e) {
-            throw new CustomException(ResultCode.ALADIN_API_ERROR, e);
+            throw new CustomException(ResultCode.ALADIN_API_ERROR);
         }
     }
 
@@ -73,7 +73,7 @@ public class AladinService {
         } catch (CustomException e) {
             throw e;
         } catch (Exception e) {
-            throw new CustomException(ResultCode.ALADIN_API_ERROR, e);
+            throw new CustomException(ResultCode.ALADIN_API_ERROR);
         }
     }
 
@@ -81,21 +81,22 @@ public class AladinService {
      * 알라딘에서 던져주는 예외가 다양하니 메소드로 따로 구현
      */
     private CustomException handleWebClientException(Throwable ex) {
-        if (ex instanceof WebClientResponseException) {
-            WebClientResponseException wcre = (WebClientResponseException) ex;
-            HttpStatusCode status = wcre.getStatusCode();
-            if (status.is4xxClientError()) {
-                return new CustomException(ResultCode.ALADIN_INVALID_RESPONSE);
-            } else if (status.is5xxServerError()) {
-                return new CustomException(ResultCode.ALADIN_API_ERROR);
-            }
-        }
-        // 네트워크 관련 예외 처리
-        if (ex instanceof java.net.ConnectException ||
-                ex instanceof java.net.SocketTimeoutException ||
-                ex instanceof reactor.netty.http.client.PrematureCloseException) {
+        if (ex instanceof WebClientResponseException wcre) {
+            return handleResponseException(wcre);
+        } else if (ex instanceof IOException) {
             return new CustomException(ResultCode.ALADIN_NETWORK_ERROR);
+        } else {
+            return new CustomException(ResultCode.ALADIN_API_ERROR);
         }
-        return new CustomException(ResultCode.ALADIN_API_ERROR);
+    }
+
+    private CustomException handleResponseException(WebClientResponseException wcre) {
+        if (wcre.getStatusCode().is4xxClientError()) {
+            return new CustomException(ResultCode.ALADIN_INVALID_RESPONSE);
+        } else if (wcre.getStatusCode().is5xxServerError()) {
+            return new CustomException(ResultCode.ALADIN_API_ERROR);
+        } else {
+            return new CustomException(ResultCode.ALADIN_API_ERROR);
+        }
     }
 }

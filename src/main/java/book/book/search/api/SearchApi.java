@@ -1,7 +1,7 @@
 package book.book.search.api;
 
-import book.book.common.Response.CursorPageResponse;
-import book.book.common.Response.ResponseForm;
+import book.book.common.response.CursorPageResponse;
+import book.book.common.response.ResponseForm;
 import book.book.search.dto.SearchBookResponse;
 import book.book.search.service.SearchService;
 import lombok.RequiredArgsConstructor;

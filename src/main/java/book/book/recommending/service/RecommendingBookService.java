@@ -5,7 +5,7 @@ import book.book.book.repository.BookRepository;
 import book.book.book.service.MappingMemberBookAndImage;
 import book.book.book.sort.SortType;
 import book.book.collection.dto.MinmumBookInfoRequest;
-import book.book.common.Response.CursorPageResponse;
+import book.book.common.response.CursorPageResponse;
 import book.book.image.ImageService;
 import book.book.recommending.dto.RecommendingBookResponse;
 import book.book.recommending.entity.Recommending;

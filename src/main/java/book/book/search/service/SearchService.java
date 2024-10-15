@@ -2,7 +2,7 @@ package book.book.search.service;
 
 import book.book.book.entity.Book;
 import book.book.book.repository.BookRepository;
-import book.book.common.Response.CursorPageResponse;
+import book.book.common.response.CursorPageResponse;
 import book.book.search.dto.SearchBookResponse;
 import book.book.search.dto.aladin.AladinSearchResponse;
 import lombok.RequiredArgsConstructor;

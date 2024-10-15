@@ -9,7 +9,7 @@ import book.book.collection.dto.MinmumBookInfoRequest;
 import book.book.collection.entity.Collection;
 import book.book.collection.entity.CollectionBook;
 import book.book.collection.repository.collectionbook.CollectionBookRepository;
-import book.book.common.Response.CursorPageResponse;
+import book.book.common.response.CursorPageResponse;
 import book.book.image.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

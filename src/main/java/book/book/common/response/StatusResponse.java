@@ -1,4 +1,4 @@
-package book.book.common.Response;
+package book.book.common.response;
 
 import book.book.common.ResultCode;
 import lombok.Getter;

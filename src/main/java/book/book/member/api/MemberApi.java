@@ -1,6 +1,6 @@
 package book.book.member.api;
 
-import book.book.common.Response.ResponseForm;
+import book.book.common.response.ResponseForm;
 import book.book.member.dto.MinimmumMemberProfile;
 import book.book.member.service.MemberService;
 import lombok.RequiredArgsConstructor;

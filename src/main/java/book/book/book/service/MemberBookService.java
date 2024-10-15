@@ -8,7 +8,7 @@ import book.book.book.entity.ReadingStatus;
 import book.book.book.repository.BookRepository;
 import book.book.book.repository.MemberBookRepository;
 import book.book.book.sort.SortType;
-import book.book.common.Response.CursorPageResponse;
+import book.book.common.response.CursorPageResponse;
 import book.book.image.ImageService;
 import book.book.member.entity.Member;
 import book.book.member.repository.MemberRepository;
