@@ -4,18 +4,12 @@ import book.book.book.entity.ReadingStatus;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
-
-
-@Data
-public class SaveReadingStatusRequest {
-
-    @NotNull
-    private ReadingStatus readingStatus;
-
-    @Min(0)
-    @Max(5)
-    private Float star;
-
+public record SaveReadingStatusRequest(
+        @NotNull
+        ReadingStatus readingStatus,
+        @Min(0)
+        @Max(5)
+        Float star
+) {
 }

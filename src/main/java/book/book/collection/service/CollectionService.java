@@ -35,12 +35,12 @@ public class CollectionService {
     public void saveCollection(Long memberId, SaveCollectionRequest rq) {
         Member member = memberRepository.findByIdOrElseThrow(memberId);
 
-        validateSameNameCollection(member, rq.getName());
+        validateSameNameCollection(member, rq.name());
 
-        Collection collection = new Collection(member, rq.getName(), rq.getDescription());
+        Collection collection = new Collection(member, rq.name(), rq.description());
         collectionRepository.save(collection);
 
-        collectionBookService.saveCollectionBooks(collection, rq.getBookInfos());
+        collectionBookService.saveCollectionBooks(collection, rq.bookInfos());
     }
 
     /**

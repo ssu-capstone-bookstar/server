@@ -38,7 +38,7 @@ public class RecommendingBookService {
         List<RecommendingBook> recommendingBooks = new ArrayList<>();
 
         for (MinmumBookInfoRequest minmumBookInfoRequest : minmumBookInfoRequests) {
-            Book book = bookRepository.findByIsbn13OrElseThrow(minmumBookInfoRequest.getIsbn13());
+            Book book = bookRepository.findByIsbn13OrElseThrow(minmumBookInfoRequest.isbn13());
             recommendingBooks.add(new RecommendingBook(Recommending, book));
         }
 

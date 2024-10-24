@@ -13,7 +13,7 @@ public class CollectionImageService {
 
     public List<String> getBookCollectionThumbnail(List<MinmumBookInfoRequest> minmumBookInfoRequests) {
         return minmumBookInfoRequests.stream()
-                .map(MinmumBookInfoRequest::getBookCoverImage)
+                .map(MinmumBookInfoRequest::bookCoverImage)
                 .filter(Objects::nonNull)
                 .limit(4)
                 .toList();

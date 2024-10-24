@@ -5,9 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
-public class SaveRecommedingRequest {
-
-    private List<MinmumBookInfoRequest> minmumBookInfoRequests;
-
+public record SaveRecommedingRequest(
+        List<MinmumBookInfoRequest> minmumBookInfoRequests
+) {
 }

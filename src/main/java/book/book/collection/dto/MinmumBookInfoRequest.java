@@ -1,15 +1,15 @@
 package book.book.collection.dto;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-@Data
-public class MinmumBookInfoRequest {
-
-    private String title;
-    private String author;
-    private String isbn13;
-    private LocalDateTime publishedDate;
-    private String bookCoverImage;
+public record MinmumBookInfoRequest(
+        String title,
+        String author,
+        @NotNull
+        String isbn13,
+        LocalDateTime publishedDate,
+        String bookCoverImage
+) {
 }

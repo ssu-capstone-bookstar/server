@@ -59,7 +59,7 @@ public class bookCommentService {
         MemberBook memberBook = memberBookRepository.findByMemberAndBook(member, book)
                 .orElse(new MemberBook());
 
-        memberBook.updateBookComment(rq.getComment());
+        memberBook.updateBookComment(rq.comment());
 
         memberBookRepository.save(memberBook);
     }

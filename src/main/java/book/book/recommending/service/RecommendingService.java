@@ -30,6 +30,6 @@ public class RecommendingService {
         Recommending recommending = recommendingRepository.findByRecommendedAndRecommender(reccommended, reccommender)
                 .orElse(new Recommending(reccommended, reccommender));
 
-        recommendingBookService.saveCollectionBooks(recommending, rq.getMinmumBookInfoRequests());
+        recommendingBookService.saveCollectionBooks(recommending, rq.minmumBookInfoRequests());
     }
 }
