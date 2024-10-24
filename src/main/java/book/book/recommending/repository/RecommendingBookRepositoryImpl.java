@@ -1,7 +1,7 @@
-package book.book.collection.repository.collectionbook;
+package book.book.recommending.repository;
 
 import book.book.book.sort.SortType;
-import book.book.collection.entity.CollectionBook;
+import book.book.recommending.entity.RecommendingBook;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -9,29 +9,29 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import static book.book.book.entity.QBook.book;
-import static book.book.collection.entity.QCollectionBook.collectionBook;
+import static book.book.recommending.entity.QRecommendingBook.recommendingBook;
 
 @RequiredArgsConstructor
-public class CollectionBookImpl implements CollectionBookCustom{
+public class RecommendingBookRepositoryImpl implements RecommendingBookRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<CollectionBook> findBooks(
-            Long collcetinoId,
+    public List<RecommendingBook> findBooksOnRecommended(
+            Long recommendedId,
             SortType sortType,
             Long cursorId,
             Integer pageSize) {
 
-        BooleanExpression whereClause = collectionBook.collection.id.eq(collcetinoId);
+        BooleanExpression whereClause = recommendingBook.recommending.recommended.id.eq(recommendedId);
 
         if (cursorId != null) {
-            whereClause = whereClause.and(collectionBook.id.lt(cursorId));
+            whereClause = whereClause.and(recommendingBook.id.lt(cursorId));
         }
 
         return queryFactory
-                .selectFrom(collectionBook)
-                .innerJoin(collectionBook.book, book).fetchJoin()
+                .selectFrom(recommendingBook)
+                .innerJoin(recommendingBook.book, book).fetchJoin()
                 .where(whereClause)
                 .orderBy(sortType.getOrderExpression())
                 .limit(pageSize)

@@ -3,10 +3,15 @@ package book.book.search.dto.aladin;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AladinItemLookUpResponse extends AladinApiCommonResponse {
     private List<LookUpItem> item;  //알라딘 API에서 반환할 때 items가 아니 item라는 이름으로 리스트 반환해줌

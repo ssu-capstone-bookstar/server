@@ -37,9 +37,7 @@ public class Book extends BaseTimeEntity {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "book")
-    private List<BookAuthor> bookAuthors = new ArrayList<>();
-
+    private String author; //일부로 엔티티로 작성 안함 로직 단순화를 위해
 
     @Column(length = 10)
     private String isbn;

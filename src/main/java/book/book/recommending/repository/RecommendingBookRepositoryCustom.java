@@ -5,7 +5,7 @@ import book.book.recommending.entity.RecommendingBook;
 
 import java.util.List;
 
-public interface RecommendingRepositoryCustom {
+public interface RecommendingBookRepositoryCustom {
 
     List<RecommendingBook> findBooksOnRecommended(Long recommendedId, SortType sortType, Long cursorId, Integer pageSize);
 }

@@ -42,7 +42,7 @@ public class CollectionBookService {
 
     @Transactional
     public void deleteAllByCollection(Collection collection) {
-        collectionBookRepository.deleteAllByBookCollection(collection);
+        collectionBookRepository.deleteAllByCollection(collection);
     }
 
     @Transactional(readOnly = true)

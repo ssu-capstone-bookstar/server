@@ -5,7 +5,7 @@ import book.book.collection.entity.CollectionBook;
 
 import java.util.List;
 
-public interface CollectionBookCustom {
+public interface CollectionBookRepositoryCustom {
 
     List<CollectionBook> findBooks(Long collcetinoId, SortType sortType, Long cursorId, Integer pageSize);
 }
