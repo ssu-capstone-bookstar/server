@@ -34,31 +34,31 @@ public class BookCommentApi {
     }
 
     @Operation(summary = "평가 생성")
-    @PostMapping("/book_comment/{book_id}")
+    @PostMapping("/book-comment/{bookId}")
     public void saveBookComment(@AuthenticationPrincipal Long memberId,
-                                @PathVariable Long book_id,
+                                @PathVariable("bookId") Long bookId,
                                 @RequestBody @Valid SavedBookCommentRequest request) {
-        bookCommentService.saveBookComment(memberId, book_id, request);
+        bookCommentService.saveBookComment(memberId, bookId, request);
     }
 
     @Operation(summary = "평가 삭제")
-    @DeleteMapping("/book_comment/{book_id}")
+    @DeleteMapping("/book-comment/{bookId}")
     public void deleteBookComment(@AuthenticationPrincipal Long memberId,
-                                  @PathVariable Long book_id) {
-        bookCommentService.deleteBookComment(memberId, book_id);
+                                  @PathVariable("bookId") Long bookId) {
+        bookCommentService.deleteBookComment(memberId, bookId);
     }
 
     @Operation(summary = "평가 좋아요 생성")
-    @PostMapping("/{book_comment_id}/like")
+    @PostMapping("/{bookCommentId}/like")
     public void saveBookCommentLike(@AuthenticationPrincipal Long memberId,
-                                    @PathVariable Long book_comment_id) {
-        bookCommentService.saveBookCommentLike(memberId, book_comment_id);
+                                    @PathVariable("bookCommentId") Long bookCommentId) {
+        bookCommentService.saveBookCommentLike(memberId, bookCommentId);
     }
 
     @Operation(summary = "평가 좋아요 삭제")
-    @DeleteMapping("/{book_comment_id}/like")
+    @DeleteMapping("/{bookCommentId}/like")
     public void deleteBookCommentLike(@AuthenticationPrincipal Long memberId,
-                                      @PathVariable Long book_comment_id) {
-        bookCommentService.deleteBookCommentLike(memberId, book_comment_id);
+                                      @PathVariable("bookCommentId") Long bookCommentId) {
+        bookCommentService.deleteBookCommentLike(memberId, bookCommentId);
     }
 }

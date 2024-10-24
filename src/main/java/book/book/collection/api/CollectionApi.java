@@ -35,18 +35,18 @@ public class CollectionApi {
     }
 
     @Operation(summary = "컬렉션 정보 업데이트")
-    @PostMapping("/{collection_id}")
+    @PostMapping("/{collectionId}")
     public ResponseForm<CollectionResponse> updateCollection(@AuthenticationPrincipal Long memberId,
-                                                             @PathVariable Long collection_id,
+                                                             @PathVariable("collectionId") Long collectionId,
                                                              @RequestBody @Valid UpdateCollectionRequest request) {
-        return new ResponseForm<>(collectionService.updateCollection(memberId, collection_id, request));
+        return new ResponseForm<>(collectionService.updateCollection(memberId, collectionId, request));
     }
 
     @Operation(summary = "컬렉션 삭제")
-    @DeleteMapping("/{collection_id}")
+    @DeleteMapping("/{collectionId}")
     public void deleteCollection(@AuthenticationPrincipal Long memberId,
-                                 @PathVariable Long collection_id) {
-        collectionService.deleteCollection(memberId, collection_id);
+                                 @PathVariable("collectionId") Long collectionId) {
+        collectionService.deleteCollection(memberId, collectionId);
     }
 
     @Operation(summary = "내 컬렉션들 썸네일 조회")
@@ -61,17 +61,17 @@ public class CollectionApi {
      */
 
     @Operation(summary = "컬렉션 좋아요 생성")
-    @PostMapping("/{collection_id}/like")
+    @PostMapping("/{collectionId}/like")
     public void saveCollectionLike(@AuthenticationPrincipal Long memberId,
-                                   @PathVariable Long collection_id) {
-        collectionLikeService.saveCollectionLike(memberId, collection_id);
+                                   @PathVariable("collectionId") Long collectionId) {
+        collectionLikeService.saveCollectionLike(memberId, collectionId);
     }
 
     @Operation(summary = "컬렉션 좋아요 삭제")
-    @DeleteMapping("/{collection_id}/like")
+    @DeleteMapping("/{collectionId}/like")
     public void deleteCollectionLike(@AuthenticationPrincipal Long memberId,
-                                     @PathVariable Long collection_id) {
-        collectionLikeService.deleteCollectionLike(memberId, collection_id);
+                                     @PathVariable("collectionId") Long collectionId) {
+        collectionLikeService.deleteCollectionLike(memberId, collectionId);
     }
 
     @Operation(summary = "좋아요한 컬렉션들 썸네일 조회")

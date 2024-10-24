@@ -19,15 +19,15 @@ public class CollectionBookApi {
     private final CollectionBookService collectionBookService;
 
     @Operation(summary = "나의 특정 컬렉션 책들 조회")
-    @GetMapping("{collection_id}/books")
+    @GetMapping("{collectionId}/books")
     public ResponseForm<CursorPageResponse<CollectionBookResponse>> getMyCollectionBooks(
-            @PathVariable
-            Long collection_id,
+            @PathVariable("collectionId")
+            Long collectionId,
             @RequestParam(value = "sortType")
             SortType sortType,
             @RequestParam(value = "cursorId", required = false)
             Long cursorId) {
 
-        return new ResponseForm<>(collectionBookService.getMyCollectionBooks(collection_id, sortType, cursorId));
+        return new ResponseForm<>(collectionBookService.getMyCollectionBooks(collectionId, sortType, cursorId));
     }
 }

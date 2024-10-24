@@ -23,7 +23,7 @@ public class MemberBookApi {
     private final MemberBookService memberBookService;
 
     @Operation(summary = "서재에서 읽은 상태에 따른 책 조회")
-    @GetMapping("/reading_status")
+    @GetMapping("/reading-status")
     public ResponseForm<CursorPageResponse<MemberBookResponse>> getBookByReadingStatus(
             @AuthenticationPrincipal
             Long memberId,
@@ -38,18 +38,18 @@ public class MemberBookApi {
     }
 
     @Operation(summary = "서재에 읽은 상태에 따른 책 생성")
-    @PostMapping("/{book_id}/reading_status")
+    @PostMapping("/{bookId}/reading-status")
     public void saveReadingStatus(@AuthenticationPrincipal Long memberId,
-                                  @PathVariable Long book_id,
+                                  @PathVariable("bookId") Long bookId,
                                   @RequestBody @Valid SaveReadingStatusRequest request) {
-        memberBookService.saveReadingStatus(memberId, book_id, request);
+        memberBookService.saveReadingStatus(memberId, bookId, request);
     }
 
     @Operation(summary = "서재에서 읽은 상태에 따른 책 삭제")
-    @DeleteMapping("/{book_id}/reading_status")
+    @DeleteMapping("/{bookId}/reading-status")
     public void deleteReadingStatus(@AuthenticationPrincipal Long memberId,
-                                    @PathVariable Long book_id) {
-        memberBookService.deleteReadingStatus(memberId, book_id);
+                                    @PathVariable("bookId") Long bookId) {
+        memberBookService.deleteReadingStatus(memberId, bookId);
     }
 
 

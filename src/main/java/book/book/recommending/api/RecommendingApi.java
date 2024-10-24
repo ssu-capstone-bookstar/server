@@ -19,10 +19,10 @@ public class RecommendingApi {
     private final RecommendingService recommendingService;
 
     @Operation(summary = "추천 생성")
-    @PostMapping("/{recommender_id}")
+    @PostMapping("/{recommenderId}")
     public void saveRecommending(@AuthenticationPrincipal Long memberId,
-                                 @PathVariable Long recommender_id,
+                                 @PathVariable("recommenderId") Long recommenderId,
                                  @RequestBody @Valid SaveRecommedingRequest request) {
-        recommendingService.saveRecommending(memberId, recommender_id, request);
+        recommendingService.saveRecommending(memberId, recommenderId, request);
     }
 }
