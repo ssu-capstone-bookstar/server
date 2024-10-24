@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/collections")
 @RequiredArgsConstructor
-@Tag(name = "CollectinoBook", description = "컬렉션 내 책 API")
+@Tag(name = "CollectionBook", description = "컬렉션 내 책 API")
 public class CollectionBookApi {
 
     private final CollectionBookService collectionBookService;
