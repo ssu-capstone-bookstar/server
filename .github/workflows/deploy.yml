@@ -72,5 +72,7 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           port: ${{ secrets.AWS_SSH_PORT }}
           script: |
-            chmod +x deploy-docker.sh
-            ./deploy-docker.sh
+            cd ~/docker
+            docker compose down server
+            docker image rm docker-server
+            docker compose up server -d
